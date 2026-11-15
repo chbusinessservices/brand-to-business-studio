@@ -177,12 +177,19 @@ function InquiriesView() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const counts = useMemo(() => {
-    const c: Record<string, number> = { all: 0, open: 0 };
-    for (const s of INQUIRY_STATUSES) c[s] = 0;
+    const c: Record<InquiryStatus | "all" | "open", number> = {
+      all: 0,
+      open: 0,
+      new: 0,
+      contacted: 0,
+      scheduled: 0,
+      completed: 0,
+      archived: 0,
+    };
     for (const row of data ?? []) {
-      c.all++;
-      c[row.status]++;
-      if (row.status !== "archived" && row.status !== "completed") c.open++;
+      c.all += 1;
+      c[row.status] += 1;
+      if (row.status !== "archived" && row.status !== "completed") c.open += 1;
     }
     return c;
   }, [data]);

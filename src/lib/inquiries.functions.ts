@@ -35,7 +35,7 @@ function clientIp(request: Request | undefined): string {
  * then stores the inquiry. Success is only reported after the row is stored.
  */
 export const submitInquiry = createServerFn({ method: "POST" })
-  .inputValidator((data: unknown) => inquirySubmissionSchema.parse(data))
+  .validator((data: unknown) => inquirySubmissionSchema.parse(data))
   .handler(async ({ data }): Promise<SubmitInquiryResult> => {
     const spam = checkSpamSignals({ company: data.company, elapsedMs: data.elapsedMs });
     if (!spam.allowed) {
