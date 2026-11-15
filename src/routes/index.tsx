@@ -1,23 +1,77 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import {
+  About,
+  Contact,
+  Faq,
+  Hero,
+  HowItWorks,
+  Method,
+  Problems,
+  Services,
+  Statement,
+} from "@/components/site/Sections";
+import { SITE } from "@/lib/site";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const TITLE = "CH Business Services — We build the business behind the brand";
+const DESCRIPTION =
+  "Brand architecture and business systems studio helping service-business founders connect a clear brand promise with the structure to deliver it.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: SITE.name },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: SITE.name,
+          description: DESCRIPTION,
+          email: SITE.email,
+          telephone: "+1-929-515-5434",
+          foundingDate: String(SITE.established),
+          founder: { "@type": "Person", name: SITE.founder },
+        }),
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-background">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-foreground focus:px-4 focus:py-2 focus:text-background"
+      >
+        Skip to content
+      </a>
+      <Header />
+      <main id="main">
+        <Hero />
+        <Statement />
+        <Problems />
+        <Services />
+        <Method />
+        <HowItWorks />
+        <About />
+        <Faq />
+        <Contact />
+      </main>
+      <Footer />
     </div>
   );
 }
