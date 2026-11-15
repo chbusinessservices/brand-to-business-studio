@@ -244,13 +244,11 @@ export function InquiryForm() {
             const selected = (field.value ?? []) as string[];
             return (
               <FormItem className="mt-6">
-                <FormLabel asChild>
-                  <legend>
-                    Service interest{" "}
-                    <span className="font-normal text-muted-foreground">(optional, choose any)</span>
-                  </legend>
-                </FormLabel>
-                <div role="group" aria-label="Service interest" className="flex flex-wrap gap-2 pt-1">
+                <p id="service-interest-label" className="text-sm font-medium leading-none">
+                  Service interest{" "}
+                  <span className="font-normal text-muted-foreground">(optional, choose any)</span>
+                </p>
+                <div role="group" aria-labelledby="service-interest-label" className="flex flex-wrap gap-2 pt-1">
                   {SERVICE_OPTIONS.map((opt) => {
                     const active = selected.includes(opt);
                     return (
