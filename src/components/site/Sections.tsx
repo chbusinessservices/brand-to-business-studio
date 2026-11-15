@@ -308,7 +308,7 @@ export function About() {
       <div className={cn(wrap, "grid gap-12 py-20 md:grid-cols-12 md:py-28")}>
         <div className="md:col-span-4">
           <SectionLabel index="05">About</SectionLabel>
-          <div className="mt-10 flex aspect-square max-w-[320px] items-center justify-center border bg-muted">
+          <div className="mt-10 flex aspect-square max-w-[240px] md:max-w-[320px] items-center justify-center border bg-muted">
             <Monogram variant="onLight" size={180} className="h-1/2 w-1/2" alt="CH monogram" />
           </div>
         </div>
