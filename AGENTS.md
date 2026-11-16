@@ -28,3 +28,12 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Business details, booking URL, and all marketing copy live in `src/lib/site.ts`; components read from it so details change in one place.
+- Inquiry validation and spam/rate-limit rules live in `src/lib/inquiry-schema.ts`, shared by the form and the `submitInquiry` server function; tests in `src/test/inquiry-rules.test.ts` cover them.
+- Inquiries are inserted only by the `submitInquiry` server function (service client, after validation); the public has no insert/select access, so never add anon policies to `inquiries`.
+- Owner access comes only from `public.user_roles` (`admin`), granted automatically by a trigger when a confirmed account's email is in `public.owner_allowlist`; never grant roles from client code or user metadata.
+- The owner dashboard reads/updates inquiries with the browser client under RLS (`has_role(auth.uid(),'admin')`); keep it under `src/routes/_authenticated/`.
+- Logos are CDN asset pointers in `src/assets/*.asset.json`; use `Logo`/`Monogram` from `src/components/site/Logo.tsx` (onLight vs onDark variants) rather than raw images.
