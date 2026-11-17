@@ -79,7 +79,7 @@ export function InquiryForm() {
       setPhase({
         kind: "error",
         message:
-          "We couldn't send your inquiry right now. Nothing was saved—please try again or email us directly.",
+          "We couldn't confirm that your inquiry was sent. Please try again, or contact us directly.",
       });
     }
   });

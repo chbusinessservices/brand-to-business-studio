@@ -8,6 +8,20 @@
       "when": 1794785181437,
       "tag": "0000_migration",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794883314371,
+      "tag": "0001_harden_inquiry_and_role_grants",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794883466461,
+      "tag": "0002_has_role_caller_only",
+      "breakpoints": true
     }
   ]
 }

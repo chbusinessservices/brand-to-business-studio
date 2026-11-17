@@ -1,0 +1,11 @@
+REVOKE ALL ON public.inquiries FROM anon;
+REVOKE ALL ON public.user_roles FROM anon;
+REVOKE ALL ON public.owner_allowlist FROM anon, authenticated;
+REVOKE INSERT, TRUNCATE, REFERENCES, TRIGGER ON public.inquiries FROM authenticated;
+REVOKE INSERT, UPDATE, DELETE, TRUNCATE, REFERENCES, TRIGGER ON public.user_roles FROM authenticated;
+GRANT SELECT, UPDATE, DELETE ON public.inquiries TO authenticated;
+GRANT SELECT ON public.user_roles TO authenticated;
+GRANT ALL ON public.inquiries, public.user_roles, public.owner_allowlist TO service_role;
+REVOKE EXECUTE ON FUNCTION public.has_role(uuid, public.app_role) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.has_role(uuid, public.app_role) TO authenticated, service_role;
+REVOKE EXECUTE ON FUNCTION public.grant_owner_role_on_confirm() FROM PUBLIC, anon, authenticated;

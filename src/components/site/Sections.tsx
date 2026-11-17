@@ -53,7 +53,7 @@ export function Hero() {
             A clear promise needs a clear way to deliver. CH connects brand strategy with the
             structure behind the client experience.
           </p>
-          <div className="flex flex-col gap-3 sm:flex-row md:col-span-6 md:col-start-7 md:-mt-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap md:col-span-6 md:col-start-7 md:-mt-4">
             <Button asChild size="xl" className="w-full sm:w-auto">
               <a href="#contact">
                 Request a Free 15-Minute Clarity Call
