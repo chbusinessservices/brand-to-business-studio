@@ -88,9 +88,9 @@ function Privacy() {
               cannot view, change, or delete other people’s inquiries.
             </p>
             <p>
-              <strong className="font-medium">Retention:</strong> [Owner to confirm how long
-              inquiries are kept, e.g. a fixed period after the last contact.] You may ask us to
-              delete your inquiry at any time by emailing {SITE.email}.
+              <strong className="font-medium">Retention:</strong> Inquiries are currently kept
+              until you ask us to delete them or {SITE.name} removes them; there is no automatic
+              deletion. You may ask us to delete your inquiry at any time by emailing {SITE.email}.
             </p>
           </Section>
 
@@ -152,8 +152,8 @@ function Privacy() {
 
           <Section title="Changes">
             <p>
-              Last updated: [Owner to set date on approval]. We will update this page if the way
-              the website collects information changes.
+              Draft prepared November 17, 2026. We will update this page if the way the website
+              collects information changes.
             </p>
           </Section>
         </div>
