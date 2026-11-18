@@ -4,10 +4,10 @@
   command = "bun run build"
   publish = "dist"
 
-# The Supabase URL, project ID and publishable (anon) key are public by design:
-# Vite inlines the VITE_* copies into the client bundle, and access is enforced by RLS.
-# Exclude only these keys from secrets scanning; everything else (e.g. the
-# service role key, which is server-only) stays protected.
 [build.environment]
+  # These Supabase values are public by design: the project URL/ID and the
+  # publishable (anon) key are embedded in the browser and SSR bundles, and
+  # access is enforced by Row Level Security. The service-role key is NOT
+  # listed here and must never appear in build output.
   SECRETS_SCAN_OMIT_KEYS = "VITE_SUPABASE_PROJECT_ID,VITE_SUPABASE_PUBLISHABLE_KEY,VITE_SUPABASE_URL,SUPABASE_PROJECT_ID,SUPABASE_PUBLISHABLE_KEY,SUPABASE_URL"
   NITRO_PRESET = "netlify"
