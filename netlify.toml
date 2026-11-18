@@ -11,3 +11,12 @@
   # is enforced by Row Level Security. Real secrets (e.g. the service role key)
   # are only read at runtime on the server and are still scanned.
   SECRETS_SCAN_OMIT_KEYS = "SUPABASE_URL,SUPABASE_PROJECT_ID,SUPABASE_PUBLISHABLE_KEY,VITE_SUPABASE_URL,VITE_SUPABASE_PROJECT_ID,VITE_SUPABASE_PUBLISHABLE_KEY"
+
+# Lovable asset pointers (src/assets/*.asset.json) reference /__l5e/assets-v1/...,
+# which only Lovable's hosting serves. Known logos are copied into
+# public/__l5e/ so they are served statically; this non-forced rewrite proxies
+# any newer asset that hasn't been copied yet from the Lovable-published app.
+[[redirects]]
+  from = "/__l5e/assets-v1/*"
+  to = "https://brand-to-business-studio.lovable.app/__l5e/assets-v1/:splat"
+  status = 200
