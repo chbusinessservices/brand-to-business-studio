@@ -10,5 +10,4 @@
 # service role key, which is server-only) stays protected.
 [build.environment]
   SECRETS_SCAN_OMIT_KEYS = "VITE_SUPABASE_PROJECT_ID,VITE_SUPABASE_PUBLISHABLE_KEY,VITE_SUPABASE_URL,SUPABASE_PROJECT_ID,SUPABASE_PUBLISHABLE_KEY,SUPABASE_URL"
-[build.environment]
   NITRO_PRESET = "netlify"
