@@ -25,7 +25,7 @@ export function Header() {
     >
       <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between gap-6 px-5 md:px-10">
         <a href="/" aria-label="CH Business Services — home" className="shrink-0">
-          <Logo variant="onLight" height={40} className="md:!h-[46px] md:!w-[133px]" />
+          <Logo variant="onLight" height={40} className="md:!h-[46px] md:!w-[140px]" />
         </a>
 
         <nav aria-label="Primary" className="hidden lg:block">

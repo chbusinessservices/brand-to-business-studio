@@ -1,11 +1,15 @@
-import logoLight from "@/assets/ch-logo-light-bg.png.asset.json";
-import logoDark from "@/assets/ch-logo-dark-bg.png.asset.json";
-import monoDark from "@/assets/ch-monogram-dark.png.asset.json";
-import monoLight from "@/assets/ch-monogram-light.png.asset.json";
 import { cn } from "@/lib/utils";
 
-// Source files keep their native proportions: full logo 775x268, monogram 1:1.
-const LOGO_RATIO = 775 / 268;
+// Logo files are served as static files from /public so they load on any host.
+//   ch-logo-light.png     – charcoal artwork for light backgrounds
+//   ch-logo-dark.png      – cream artwork for dark backgrounds
+//   ch-monogram.png       – charcoal circle for light backgrounds
+//   ch-monogram-light.png – cream circle for dark backgrounds
+const LOGO_SRC = { onLight: "/ch-logo-light.png", onDark: "/ch-logo-dark.png" } as const;
+const MONOGRAM_SRC = { onLight: "/ch-monogram.png", onDark: "/ch-monogram-light.png" } as const;
+
+// Source files keep their native proportions: full logo 1200x394, monogram 1:1.
+const LOGO_RATIO = 1200 / 394;
 
 export function Logo({
   variant = "onLight",
@@ -16,7 +20,7 @@ export function Logo({
   height?: number;
   className?: string;
 }) {
-  const src = variant === "onLight" ? logoLight.url : logoDark.url;
+  const src = LOGO_SRC[variant];
   return (
     <img
       src={src}
@@ -42,7 +46,7 @@ export function Monogram({
   alt?: string;
 }) {
   // onLight shows the dark circle; onDark shows the light circle.
-  const src = variant === "onLight" ? monoDark.url : monoLight.url;
+  const src = MONOGRAM_SRC[variant];
   return (
     <img
       src={src}

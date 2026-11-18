@@ -14,7 +14,7 @@ Build CH Business Services in stages, beginning with a launch-ready public websi
   - Audience: Service-business founders who need greater clarity in how they present their business and organize the client experience.
   - Voice: Clear, calm, specific, professional. Question-led rather than pressure-led. Explain practical outcomes before framework terminology. Do not invent testimonials, fake client metrics, unverified biographies, or fake guarantees.
 - Design & Branding:
-  - Derived from the supplied CH logos in attachments: 1.png / 1.png_TRANSPARENT for light backgrounds, 2.png / 2.png_TRANSPARENT for dark backgrounds, Standalone Monogram Icon for compact avatar / favicon / marks.
+  - Static files in `public/`: `ch-logo-light.png` (light backgrounds), `ch-logo-dark.png` (dark backgrounds), `ch-monogram.png` / `ch-monogram-light.png` (compact marks), plus `favicon.png` and `apple-touch-icon.png`.
   - Maintain exact logo aspect ratios and clear space.
   - Editorial, structured visual aesthetic: deep blacks, pure whites, warm charcoal/stone accents, sharp precision borders, elegant typography with generous whitespace and restrained micro-interactions.
 - Public Website Content Structure:
