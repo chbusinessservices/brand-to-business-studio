@@ -1,6 +1,14 @@
+# On Netlify, the Nitro build writes static client assets to dist/ and the
+# server function to .netlify/functions-internal.
 [build]
   command = "bun run build"
   publish = "dist"
 
+# The Supabase URL, project ID and publishable (anon) key are public by design:
+# Vite inlines the VITE_* copies into the client bundle, and access is enforced by RLS.
+# Exclude only these keys from secrets scanning; everything else (e.g. the
+# service role key, which is server-only) stays protected.
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "VITE_SUPABASE_PROJECT_ID,VITE_SUPABASE_PUBLISHABLE_KEY,VITE_SUPABASE_URL,SUPABASE_PROJECT_ID,SUPABASE_PUBLISHABLE_KEY,SUPABASE_URL"
 [build.environment]
   NITRO_PRESET = "netlify"
