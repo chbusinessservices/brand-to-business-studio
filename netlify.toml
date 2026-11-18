@@ -1,0 +1,12 @@
+# Build command is configured in the Netlify UI.
+
+[build]
+  # The Nitro "netlify" preset writes static assets to dist/ (not dist/client).
+  publish = "dist"
+
+[build.environment]
+  # These Supabase values are public by design: the project URL/ID and the
+  # publishable (anon) key are embedded in the browser and SSR bundles, and
+  # access is enforced by Row Level Security. The service-role key is NOT
+  # listed here and must never appear in build output.
+  SECRETS_SCAN_OMIT_KEYS = "SUPABASE_PROJECT_ID,SUPABASE_PUBLISHABLE_KEY,SUPABASE_URL"
