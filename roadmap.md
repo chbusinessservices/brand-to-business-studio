@@ -1,11 +1,11 @@
 # Roadmap
 ## Launch-readiness audit (phase one)
-- [ ] Website tests (layouts, nav, logos, links, booking, form, storage, failure, placeholders, copy, privacy)
-- [ ] Security tests (anon read, unauthorized dashboard, self-escalation, secrets, backend authz)
-- [ ] Fix failures
-- [ ] Remove TEST records
-- [ ] Publish to lovable.app URL
-- [ ] Custom-domain instructions for chbusinessservices.pro (no DNS changes; check conflicting records)
+- [x] Website tests (layouts, nav, logos, links, booking, form, storage, failure, placeholders, copy, privacy)
+- [x] Security tests (anon read, unauthorized dashboard, self-escalation, secrets, backend authz)
+- [x] Fix failures
+- [x] Remove TEST records
+- [x] Publish to lovable.app URL
+- [ ] Connect chbusinessservices.pro — blocked: workspace needs a paid plan; owner must remove Netlify site binding + wildcard CNAME first
 
 ## Phase two: client delivery (after audit + publish)
 - [ ] Inspect schema; design orgs/memberships/project assignments with 6 roles, deny by default

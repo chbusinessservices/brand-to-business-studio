@@ -124,7 +124,10 @@ function Privacy() {
 
           <Section title="Cookies and local storage">
             <p>
-              Public pages of this website do not set advertising or tracking cookies. If an
+              Public pages of this website do not set advertising or tracking cookies. The website’s
+              hosting may set short-lived technical cookies—for example to route your visit to the
+              current version of the site or to filter automated traffic. They are not used for
+              advertising or to build a profile of you. If an
               authorized owner signs in to the private dashboard, the sign-in session is kept in
               that browser’s local storage so they stay signed in. Visitors who never sign in are
               not affected.
