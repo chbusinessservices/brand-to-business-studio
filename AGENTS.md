@@ -36,4 +36,4 @@ use the editor.
 - Inquiries are inserted only by the `submitInquiry` server function (service client, after validation); the public has no insert/select access, so never add anon policies to `inquiries`.
 - Owner access comes only from `public.user_roles` (`admin`), granted automatically by a trigger when a confirmed account's email is in `public.owner_allowlist`; never grant roles from client code or user metadata.
 - The owner dashboard reads/updates inquiries with the browser client under RLS (`has_role(auth.uid(),'admin')`); keep it under `src/routes/_authenticated/`.
-- Logos are CDN asset pointers in `src/assets/*.asset.json`; use `Logo`/`Monogram` from `src/components/site/Logo.tsx` (onLight vs onDark variants) rather than raw images.
+- Logos are static files in `public/` (`/ch-logo-light.png`, `/ch-logo-dark.png`, `/ch-monogram.png`, `/ch-monogram-light.png`; favicon `/favicon.png`, `/apple-touch-icon.png`) so they load on Netlify without Lovable-hosted URLs; use `Logo`/`Monogram` from `src/components/site/Logo.tsx` (onLight vs onDark variants) rather than raw images.
