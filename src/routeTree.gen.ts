@@ -16,6 +16,7 @@ import { Route as AuthRouteImport } from './routes/auth'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as ApiPublicAgencyAgentChatRouteImport } from './routes/api/public/agency-agent-chat'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -51,6 +52,12 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const ApiPublicAgencyAgentChatRoute =
+  ApiPublicAgencyAgentChatRouteImport.update({
+    id: '/api/public/agency-agent-chat',
+    path: '/api/public/agency-agent-chat',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/api/public/agency-agent-chat': typeof ApiPublicAgencyAgentChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -67,6 +75,7 @@ export interface FileRoutesByTo {
   '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/api/public/agency-agent-chat': typeof ApiPublicAgencyAgentChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -77,13 +86,27 @@ export interface FileRoutesById {
   '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/api/public/agency-agent-chat': typeof ApiPublicAgencyAgentChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/admin' | '/auth' | '/privacy' | '/reset-password' | '/dashboard'
+    | '/'
+    | '/admin'
+    | '/auth'
+    | '/privacy'
+    | '/reset-password'
+    | '/dashboard'
+    | '/api/public/agency-agent-chat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/auth' | '/privacy' | '/reset-password' | '/dashboard'
+  to:
+    | '/'
+    | '/admin'
+    | '/auth'
+    | '/privacy'
+    | '/reset-password'
+    | '/dashboard'
+    | '/api/public/agency-agent-chat'
   id:
     | '__root__'
     | '/'
@@ -93,6 +116,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/reset-password'
     | '/_authenticated/dashboard'
+    | '/api/public/agency-agent-chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -102,6 +126,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   PrivacyRoute: typeof PrivacyRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  ApiPublicAgencyAgentChatRoute: typeof ApiPublicAgencyAgentChatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -155,6 +180,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/api/public/agency-agent-chat': {
+      id: '/api/public/agency-agent-chat'
+      path: '/api/public/agency-agent-chat'
+      fullPath: '/api/public/agency-agent-chat'
+      preLoaderRoute: typeof ApiPublicAgencyAgentChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -176,6 +208,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   PrivacyRoute: PrivacyRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  ApiPublicAgencyAgentChatRoute: ApiPublicAgencyAgentChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

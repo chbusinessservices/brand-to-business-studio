@@ -14,3 +14,7 @@
 - [ ] Private file storage with signed URLs and validated uploads
 - [ ] Approval records; reapproval on change; not an e-signature
 - [ ] Tests: 2 clients + 1 contractor isolation, no internal notes, no self-elevation, unauthorized files fail; stop and report
+
+## Visitor assistant
+- [x] Server endpoint for three guide roles with private instructions, limits, allowed sites
+- [x] Question panel on home page with summary hand-off to inquiry form; privacy page updated

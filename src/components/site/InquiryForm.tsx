@@ -18,6 +18,7 @@ import {
 import { inquiryFieldsSchema } from "@/lib/inquiry-schema";
 import { submitInquiry } from "@/lib/inquiries.functions";
 import { SERVICE_OPTIONS, SITE } from "@/lib/site";
+import { PREFILL_INQUIRY_EVENT, type PrefillInquiryDetail } from "@/lib/agent/roles";
 import { cn } from "@/lib/utils";
 
 const SERVICE_HINTS: Record<(typeof SERVICE_OPTIONS)[number], string> = {
@@ -57,6 +58,23 @@ export function InquiryForm() {
   useEffect(() => {
     if (phase.kind === "success") successRef.current?.focus();
   }, [phase.kind]);
+
+  // The site assistant can hand over a visitor-approved summary for the message field.
+  useEffect(() => {
+    function onPrefill(e: Event) {
+      const message = (e as CustomEvent<PrefillInquiryDetail>).detail?.message?.trim();
+      if (!message) return;
+      setPhase({ kind: "idle" });
+      startedAt.current = Date.now();
+      // Wait for the form to be visible again if it was showing the success screen.
+      window.setTimeout(() => {
+        form.setValue("message", message.slice(0, 2000), { shouldDirty: true, shouldValidate: true });
+        form.setFocus("message");
+      }, 0);
+    }
+    window.addEventListener(PREFILL_INQUIRY_EVENT, onPrefill);
+    return () => window.removeEventListener(PREFILL_INQUIRY_EVENT, onPrefill);
+  }, [form]);
 
   const onSubmit = form.handleSubmit(async (values) => {
     setPhase({ kind: "idle" });
