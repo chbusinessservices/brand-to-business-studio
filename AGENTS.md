@@ -37,3 +37,5 @@ use the editor.
 - Owner access comes only from `public.user_roles` (`admin`), granted automatically by a trigger when a confirmed account's email is in `public.owner_allowlist`; never grant roles from client code or user metadata.
 - The owner dashboard reads/updates inquiries with the browser client under RLS (`has_role(auth.uid(),'admin')`); keep it under `src/routes/_authenticated/`.
 - Logos are static files in `public/` (`/ch-logo-light.png`, `/ch-logo-dark.png`, `/ch-monogram.png`, `/ch-monogram-light.png`; favicon `/favicon.png`, `/apple-touch-icon.png`) so they load on Netlify without Lovable-hosted URLs; use `Logo`/`Monogram` from `src/components/site/Logo.tsx` (onLight vs onDark variants) rather than raw images.
+- Keep `.env` committed and out of `.gitignore`: it holds only the public backend URL/publishable key, and the hosted build reads `VITE_*` values from it at build time (removing it blanks the published site). Never put secret keys in it.
+- Code that is not wired into the site lives outside `src/` (e.g. `archive/`), so unfinished drafts cannot break type checks or the build.
