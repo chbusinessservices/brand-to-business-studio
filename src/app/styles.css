@@ -1,0 +1,36 @@
+/*
+ * CH Business Services - Global Styles
+ * Implements spec Section 6: Design system requirements
+ */
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900;
+  }
+}
+
+@layer utilities {
+  .scroll-mt-24 { margin-top: 6rem; }
+  .scroll-mt-16 { margin-top: 4rem; }
+  
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-base font-semibold leading-6 text-white ring-inset shadow-sm hover:bg-primary-dark transition-all duration-200;
+  }
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+  
+  p {
+    @apply text-sm leading-7;
+  }
+}
+
+/* Accessibility - Focus trap for modals */
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: auto;
+  }
+}
