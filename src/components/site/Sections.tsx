@@ -180,11 +180,49 @@ export function Privacy() {
         Privacy Notice
       </h1>
 
+<<<<<<< HEAD
       <div className="mt-8 max-w-prose text-gray-700 dark:text-gray-300">
         <p>
           CH Business Services collects and processes personal data through our inquiry forms, 
           email communications, and customer interactions in compliance with applicable privacy laws.
         </p>
+=======
+        <ul className="mt-14 border-t border-ink-border">
+          {PILLARS.map((p, i) => (
+            <li
+              key={p.key}
+              className="grid gap-4 border-b border-ink-border py-9 md:grid-cols-12 md:gap-8 md:py-12"
+            >
+              <div className="md:col-span-3">
+                <p className="eyebrow text-ink-muted">0{i + 1}</p>
+                <p className="display mt-3 text-4xl tracking-[0.02em] md:text-5xl">{p.key}</p>
+              </div>
+              <div className="md:col-span-5">
+                <h3 className="text-xl font-medium md:text-2xl">{p.title}</h3>
+                <p className="mt-3 leading-relaxed text-ink-muted">{p.scope}</p>
+              </div>
+              <div className="md:col-span-4 md:border-l md:border-ink-border md:pl-8">
+                <p className="eyebrow text-ink-muted">Evidence of progress</p>
+                <p className="mt-3 leading-relaxed">{p.evidence}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-12 flex flex-col gap-6 border border-ink-border p-7 md:flex-row md:items-center md:justify-between md:p-10">
+          <p className="max-w-2xl text-xl leading-relaxed md:text-2xl">
+            Not every engagement needs every phase.{" "}
+            <span className="text-ink-muted">
+              We identify the starting point before recommending scope.
+            </span>
+          </p>
+          <Button asChild size="xl" variant="inverse" className="w-full shrink-0 md:w-auto">
+            <a href="/contact">
+              Find your starting point <ArrowRight aria-hidden />
+            </a>
+          </Button>
+        </div>
+>>>>>>> 110d2b289c8d5b72653d4df157ec3efa07e47bf3
       </div>
 
       {/* Privacy Content - would be populated with actual content per spec Section 5.9 */}

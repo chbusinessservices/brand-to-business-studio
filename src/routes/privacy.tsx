@@ -94,6 +94,22 @@ function Privacy() {
             </p>
           </Section>
 
+          <Section title="Website assistant">
+            <p>
+              The home page offers an optional AI assistant that answers questions about our
+              services. What you type is sent, together with the conversation so far, to an AI model
+              provided through Lovable’s AI service to generate a reply. We use a model whose
+              provider does not retain this content after replying; Lovable’s own handling is
+              described in its privacy policy linked below.
+            </p>
+            <p>
+              {SITE.name} does not save these conversations, and they are not sent to us. Nothing
+              reaches {SITE.name} unless you choose to copy a summary into the inquiry form and
+              submit it. Please do not enter passwords, financial details, or other sensitive
+              information in the assistant.
+            </p>
+          </Section>
+
           <Section title="Booking link">
             <p>
               If you choose to schedule a clarity call, you will be taken to our external booking

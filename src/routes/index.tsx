@@ -13,6 +13,7 @@ import {
   Statement,
 } from "@/components/site/Sections";
 import { SITE } from "@/lib/site";
+import { AssistantWidget } from "@/components/site/AssistantWidget";
 
 const TITLE = "CH Business Services — We build the business behind the brand";
 const DESCRIPTION =
@@ -72,6 +73,7 @@ function Index() {
         <Contact />
       </main>
       <Footer />
+      <AssistantWidget />
     </div>
   );
 }

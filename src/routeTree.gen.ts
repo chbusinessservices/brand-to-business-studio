@@ -11,11 +11,24 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AccessibilityRouteImport } from './routes/accessibility'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as BusinessBackupCheckRouteImport } from './routes/business-backup-check'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as HowWeWorkRouteImport } from './routes/how-we-work'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as ExamplesIndexRouteImport } from './routes/examples.index'
+import { Route as ExamplesSampleClientHandoffRouteImport } from './routes/examples.sample-client-handoff'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesCleaningBusinessSetupRouteImport } from './routes/services.cleaning-business-setup'
+import { Route as ServicesClientJourneySystemsRouteImport } from './routes/services.client-journey-systems'
+import { Route as ServicesWebsitesInquiryRouteImport } from './routes/services.websites-inquiry'
+import { Route as ApiPublicAgencyAgentChatRouteImport } from './routes/api/public/agency-agent-chat'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -24,6 +37,16 @@ const IndexRoute = IndexRouteImport.update({
 } as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccessibilityRoute = AccessibilityRouteImport.update({
+  id: '/accessibility',
+  path: '/accessibility',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -36,6 +59,21 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BusinessBackupCheckRoute = BusinessBackupCheckRouteImport.update({
+  id: '/business-backup-check',
+  path: '/business-backup-check',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowWeWorkRoute = HowWeWorkRouteImport.update({
+  id: '/how-we-work',
+  path: '/how-we-work',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -46,62 +84,208 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const ExamplesIndexRoute = ExamplesIndexRouteImport.update({
+  id: '/examples/',
+  path: '/examples/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamplesSampleClientHandoffRoute =
+  ExamplesSampleClientHandoffRouteImport.update({
+    id: '/examples/sample-client-handoff',
+    path: '/examples/sample-client-handoff',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesCleaningBusinessSetupRoute =
+  ServicesCleaningBusinessSetupRouteImport.update({
+    id: '/services/cleaning-business-setup',
+    path: '/services/cleaning-business-setup',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesClientJourneySystemsRoute =
+  ServicesClientJourneySystemsRouteImport.update({
+    id: '/services/client-journey-systems',
+    path: '/services/client-journey-systems',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesWebsitesInquiryRoute = ServicesWebsitesInquiryRouteImport.update({
+  id: '/services/websites-inquiry',
+  path: '/services/websites-inquiry',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicAgencyAgentChatRoute =
+  ApiPublicAgencyAgentChatRouteImport.update({
+    id: '/api/public/agency-agent-chat',
+    path: '/api/public/agency-agent-chat',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/accessibility': typeof AccessibilityRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/business-backup-check': typeof BusinessBackupCheckRoute
+  '/contact': typeof ContactRoute
+  '/how-we-work': typeof HowWeWorkRoute
   '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/terms': typeof TermsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/examples/sample-client-handoff': typeof ExamplesSampleClientHandoffRoute
+  '/services/cleaning-business-setup': typeof ServicesCleaningBusinessSetupRoute
+  '/services/client-journey-systems': typeof ServicesClientJourneySystemsRoute
+  '/services/websites-inquiry': typeof ServicesWebsitesInquiryRoute
+  '/examples/': typeof ExamplesIndexRoute
+  '/services/': typeof ServicesIndexRoute
+  '/api/public/agency-agent-chat': typeof ApiPublicAgencyAgentChatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/accessibility': typeof AccessibilityRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/business-backup-check': typeof BusinessBackupCheckRoute
+  '/contact': typeof ContactRoute
+  '/how-we-work': typeof HowWeWorkRoute
   '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/terms': typeof TermsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/examples/sample-client-handoff': typeof ExamplesSampleClientHandoffRoute
+  '/services/cleaning-business-setup': typeof ServicesCleaningBusinessSetupRoute
+  '/services/client-journey-systems': typeof ServicesClientJourneySystemsRoute
+  '/services/websites-inquiry': typeof ServicesWebsitesInquiryRoute
+  '/examples': typeof ExamplesIndexRoute
+  '/services': typeof ServicesIndexRoute
+  '/api/public/agency-agent-chat': typeof ApiPublicAgencyAgentChatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/about': typeof AboutRoute
+  '/accessibility': typeof AccessibilityRoute
   '/admin': typeof AdminRoute
   '/auth': typeof AuthRoute
+  '/business-backup-check': typeof BusinessBackupCheckRoute
+  '/contact': typeof ContactRoute
+  '/how-we-work': typeof HowWeWorkRoute
   '/privacy': typeof PrivacyRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/terms': typeof TermsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/examples/sample-client-handoff': typeof ExamplesSampleClientHandoffRoute
+  '/services/cleaning-business-setup': typeof ServicesCleaningBusinessSetupRoute
+  '/services/client-journey-systems': typeof ServicesClientJourneySystemsRoute
+  '/services/websites-inquiry': typeof ServicesWebsitesInquiryRoute
+  '/examples/': typeof ExamplesIndexRoute
+  '/services/': typeof ServicesIndexRoute
+  '/api/public/agency-agent-chat': typeof ApiPublicAgencyAgentChatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/admin' | '/auth' | '/privacy' | '/reset-password' | '/dashboard'
+    | '/'
+    | '/about'
+    | '/accessibility'
+    | '/admin'
+    | '/auth'
+    | '/business-backup-check'
+    | '/contact'
+    | '/how-we-work'
+    | '/privacy'
+    | '/reset-password'
+    | '/terms'
+    | '/dashboard'
+    | '/examples/sample-client-handoff'
+    | '/services/cleaning-business-setup'
+    | '/services/client-journey-systems'
+    | '/services/websites-inquiry'
+    | '/examples/'
+    | '/services/'
+    | '/api/public/agency-agent-chat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/auth' | '/privacy' | '/reset-password' | '/dashboard'
+  to:
+    | '/'
+    | '/about'
+    | '/accessibility'
+    | '/admin'
+    | '/auth'
+    | '/business-backup-check'
+    | '/contact'
+    | '/how-we-work'
+    | '/privacy'
+    | '/reset-password'
+    | '/terms'
+    | '/dashboard'
+    | '/examples/sample-client-handoff'
+    | '/services/cleaning-business-setup'
+    | '/services/client-journey-systems'
+    | '/services/websites-inquiry'
+    | '/examples'
+    | '/services'
+    | '/api/public/agency-agent-chat'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/about'
+    | '/accessibility'
     | '/admin'
     | '/auth'
+    | '/business-backup-check'
+    | '/contact'
+    | '/how-we-work'
     | '/privacy'
     | '/reset-password'
+    | '/terms'
     | '/_authenticated/dashboard'
+    | '/examples/sample-client-handoff'
+    | '/services/cleaning-business-setup'
+    | '/services/client-journey-systems'
+    | '/services/websites-inquiry'
+    | '/examples/'
+    | '/services/'
+    | '/api/public/agency-agent-chat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AboutRoute: typeof AboutRoute
+  AccessibilityRoute: typeof AccessibilityRoute
   AdminRoute: typeof AdminRoute
   AuthRoute: typeof AuthRoute
+  BusinessBackupCheckRoute: typeof BusinessBackupCheckRoute
+  ContactRoute: typeof ContactRoute
+  HowWeWorkRoute: typeof HowWeWorkRoute
   PrivacyRoute: typeof PrivacyRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  TermsRoute: typeof TermsRoute
+  ExamplesSampleClientHandoffRoute: typeof ExamplesSampleClientHandoffRoute
+  ServicesCleaningBusinessSetupRoute: typeof ServicesCleaningBusinessSetupRoute
+  ServicesClientJourneySystemsRoute: typeof ServicesClientJourneySystemsRoute
+  ServicesWebsitesInquiryRoute: typeof ServicesWebsitesInquiryRoute
+  ExamplesIndexRoute: typeof ExamplesIndexRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
+  ApiPublicAgencyAgentChatRoute: typeof ApiPublicAgencyAgentChatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -120,6 +304,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/accessibility': {
+      id: '/accessibility'
+      path: '/accessibility'
+      fullPath: '/accessibility'
+      preLoaderRoute: typeof AccessibilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -132,6 +330,27 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/business-backup-check': {
+      id: '/business-backup-check'
+      path: '/business-backup-check'
+      fullPath: '/business-backup-check'
+      preLoaderRoute: typeof BusinessBackupCheckRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-we-work': {
+      id: '/how-we-work'
+      path: '/how-we-work'
+      fullPath: '/how-we-work'
+      preLoaderRoute: typeof HowWeWorkRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -148,12 +367,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/examples/': {
+      id: '/examples/'
+      path: '/examples'
+      fullPath: '/examples/'
+      preLoaderRoute: typeof ExamplesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/examples/sample-client-handoff': {
+      id: '/examples/sample-client-handoff'
+      path: '/examples/sample-client-handoff'
+      fullPath: '/examples/sample-client-handoff'
+      preLoaderRoute: typeof ExamplesSampleClientHandoffRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/cleaning-business-setup': {
+      id: '/services/cleaning-business-setup'
+      path: '/services/cleaning-business-setup'
+      fullPath: '/services/cleaning-business-setup'
+      preLoaderRoute: typeof ServicesCleaningBusinessSetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/client-journey-systems': {
+      id: '/services/client-journey-systems'
+      path: '/services/client-journey-systems'
+      fullPath: '/services/client-journey-systems'
+      preLoaderRoute: typeof ServicesClientJourneySystemsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/websites-inquiry': {
+      id: '/services/websites-inquiry'
+      path: '/services/websites-inquiry'
+      fullPath: '/services/websites-inquiry'
+      preLoaderRoute: typeof ServicesWebsitesInquiryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/agency-agent-chat': {
+      id: '/api/public/agency-agent-chat'
+      path: '/api/public/agency-agent-chat'
+      fullPath: '/api/public/agency-agent-chat'
+      preLoaderRoute: typeof ApiPublicAgencyAgentChatRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -172,10 +447,23 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AboutRoute: AboutRoute,
+  AccessibilityRoute: AccessibilityRoute,
   AdminRoute: AdminRoute,
   AuthRoute: AuthRoute,
+  BusinessBackupCheckRoute: BusinessBackupCheckRoute,
+  ContactRoute: ContactRoute,
+  HowWeWorkRoute: HowWeWorkRoute,
   PrivacyRoute: PrivacyRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  TermsRoute: TermsRoute,
+  ExamplesSampleClientHandoffRoute: ExamplesSampleClientHandoffRoute,
+  ServicesCleaningBusinessSetupRoute: ServicesCleaningBusinessSetupRoute,
+  ServicesClientJourneySystemsRoute: ServicesClientJourneySystemsRoute,
+  ServicesWebsitesInquiryRoute: ServicesWebsitesInquiryRoute,
+  ExamplesIndexRoute: ExamplesIndexRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
+  ApiPublicAgencyAgentChatRoute: ApiPublicAgencyAgentChatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

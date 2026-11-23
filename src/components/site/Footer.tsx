@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * CH Business Services - Footer Component
  * 
@@ -48,6 +49,11 @@ export function Footer({}: FooterProps) {
       </p>
     </div>
   );
+=======
+import { Link } from "@tanstack/react-router";
+import { Logo } from "./Logo";
+import { FOOTER_LEGAL_LINKS, NAV_LINKS, PROFESSIONAL_DISCLAIMER, SITE } from "@/lib/site";
+>>>>>>> 110d2b289c8d5b72653d4df157ec3efa07e47bf3
 
   return (
     <footer className="bg-gray-50/50 dark:bg-gray-900/30 border-t border-gray-200 dark:border-gray-800">
@@ -89,6 +95,7 @@ export function Footer({}: FooterProps) {
             </div>
           </div>
 
+<<<<<<< HEAD
           {/* Services Column */}
           <div>
             <h3 className="text-sm font-semibold text-primary-secondary mb-3">Services</h3>
@@ -101,6 +108,16 @@ export function Footer({}: FooterProps) {
                   >
                     {link.label}
                   </Link>
+=======
+          <div className="md:col-span-3">
+            <p className="eyebrow text-ink-muted">Navigate</p>
+            <ul className="mt-5 grid grid-cols-2 gap-y-3 md:grid-cols-1">
+              {NAV_LINKS.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className="link-underline text-[0.95rem]">
+                    {l.label}
+                  </a>
+>>>>>>> 110d2b289c8d5b72653d4df157ec3efa07e47bf3
                 </li>
               ))}
             </ul>
@@ -195,12 +212,30 @@ export function Footer({}: FooterProps) {
           </div>
         </div>
 
+<<<<<<< HEAD
         {/* Footer Bottom */}
         <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800">
           <p className="text-xs text-gray-500 dark:text-gray-400">
             This website is operated by CH Business Services. Not all trademarks are properties of this site.
             We do not sponsor or endorse any products shown unless explicitly stated with permission.
           </p>
+=======
+        <div className="flex flex-col gap-6 pt-8 text-[0.8rem] leading-relaxed text-ink-muted md:flex-row md:items-start md:justify-between">
+          <p className="max-w-2xl">{PROFESSIONAL_DISCLAIMER}</p>
+          <div className="flex shrink-0 flex-wrap items-center gap-x-6 gap-y-2">
+            {FOOTER_LEGAL_LINKS.map((l) => (
+              <a key={l.href} href={l.href} className="link-underline">
+                {l.label}
+              </a>
+            ))}
+            <Link to="/auth" className="link-underline">
+              Owner sign-in
+            </Link>
+            <span>
+              © {year} {SITE.name} · Est. {SITE.established}
+            </span>
+          </div>
+>>>>>>> 110d2b289c8d5b72653d4df157ec3efa07e47bf3
         </div>
       </div>
     </footer>

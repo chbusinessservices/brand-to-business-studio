@@ -32,6 +32,7 @@ export function Header({}: HeaderProps) {
             </div>
           </Link>
 
+<<<<<<< HEAD
           {/* Navigation Links - spec Section 3.1 */}
           <NavLinks />
 
@@ -63,6 +64,74 @@ export function Header({}: HeaderProps) {
             Request Call <span aria-hidden="true">→</span>
           </Link>
         </nav>
+=======
+        <nav aria-label="Primary" className="hidden lg:block">
+          <ul className="flex items-center gap-7">
+            {NAV_LINKS.map((l) => (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  className="link-underline py-1 text-[0.92rem] text-foreground/80 transition-colors hover:text-foreground"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="flex items-center gap-2">
+          <Button asChild className="hidden sm:inline-flex h-10 px-5">
+            <a href="/contact">Request a Clarity Call</a>
+          </Button>
+
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-11 w-11 lg:hidden"
+                aria-label="Open menu"
+              >
+                <Menu className="!size-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-full max-w-sm border-l p-0 [&>button]:hidden">
+              <SheetTitle className="sr-only">Menu</SheetTitle>
+              <div className="flex h-[4.5rem] items-center justify-between border-b px-5">
+                <Logo variant="onLight" height={34} />
+                <SheetClose asChild>
+                  <Button variant="ghost" size="icon" className="h-11 w-11" aria-label="Close menu">
+                    <X className="!size-5" />
+                  </Button>
+                </SheetClose>
+              </div>
+              <nav aria-label="Mobile" className="px-5 py-4">
+                <ul>
+                  {NAV_LINKS.map((l, i) => (
+                    <li key={l.href} className="border-b">
+                      <SheetClose asChild>
+                        <a
+                          href={l.href}
+                          className="flex items-baseline gap-4 py-4 text-xl font-medium"
+                        >
+                          <span className="eyebrow text-muted-foreground">0{i + 1}</span>
+                          {l.label}
+                        </a>
+                      </SheetClose>
+                    </li>
+                  ))}
+                </ul>
+                <SheetClose asChild>
+                  <Button asChild size="xl" className="mt-8 w-full">
+                    <a href="/contact">Request a Free 15-Minute Clarity Call</a>
+                  </Button>
+                </SheetClose>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
+>>>>>>> 110d2b289c8d5b72653d4df157ec3efa07e47bf3
       </div>
     </header>
   );
