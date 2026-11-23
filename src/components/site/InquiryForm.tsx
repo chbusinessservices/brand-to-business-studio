@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-/**
- * CH Business Services - Public Inquiry Form Component
- * 
- * Implements spec Section 5.7: Contact and inquiry requirements exactly
- * 
- * Requirements from section:
- * - Required fields: name, email, businessName, serviceInterest, message
- * - Optional fields: phone, website, languagePreference
- * - Privacy notice link included
- * - Marketing subscription separate (unchecked)
- */
-=======
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,38 +20,41 @@ import { submitInquiry } from "@/lib/inquiries.functions";
 import { SERVICE_OPTIONS, SITE } from "@/lib/site";
 import { PREFILL_INQUIRY_EVENT, type PrefillInquiryDetail } from "@/lib/agent/roles";
 import { cn } from "@/lib/utils";
->>>>>>> 110d2b289c8d5b72653d4df157ec3efa07e47bf3
 
-import { useState } from "react";
-import Link from "next/link";
+const SERVICE_HINTS: Record<(typeof SERVICE_OPTIONS)[number], string> = {
+  CODE: "Brand clarity",
+  SHIELD: "Responsibilities",
+  SIGNAL: "Website & presence",
+  SYSTEM: "Client experience",
+  "General Inquiry": "Not sure yet",
+};
 
-interface InquiryFormProps {}
+type Phase = { kind: "idle" } | { kind: "error"; message: string } | { kind: "success" };
 
-export default function InquiryForm({}: InquiryFormProps) {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    businessName: "",
-    website: "",
-    serviceInterest: [] as string[],
-    message: "",
-    phone: "",
-    languagePreference: "English" as string | null,
-    marketingSubscribed: false as boolean,
+export function InquiryForm() {
+  const submit = useServerFn(submitInquiry);
+  const startedAt = useRef<number>(Date.now());
+  const honeypot = useRef<HTMLInputElement>(null);
+  const [phase, setPhase] = useState<Phase>({ kind: "idle" });
+  const successRef = useRef<HTMLDivElement>(null);
+
+  const form = useForm({
+    resolver: zodResolver(inquiryFieldsSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      businessName: "",
+      website: "",
+      message: "",
+      serviceInterest: [],
+    },
+    mode: "onTouched",
   });
 
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
-<<<<<<< HEAD
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    
-    // In production, this would call /api/inquiries POST
-    // For now, show loading state
-    console.log("Inquiry submitted:", formData);
-    alert("This is a demo form. In production, submit to /api/inquiries endpoint");
-  };
-=======
   useEffect(() => {
     if (phase.kind === "success") successRef.current?.focus();
   }, [phase.kind]);
@@ -162,180 +152,209 @@ export default function InquiryForm({}: InquiryFormProps) {
 
   const isSubmitting = form.formState.isSubmitting;
   const messageLength = form.watch("message")?.length ?? 0;
->>>>>>> 110d2b289c8d5b72653d4df157ec3efa07e47bf3
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      {/* Name Field - Required */}
-      <div>
-        <label htmlFor="name" className="block text-sm font-semibold text-primary-secondary">
-          Full Name <span className="text-red-500">*</span>
-        </label>
-        <input
-          type="text"
-          id="name"
-          value={formData.name}
-          onChange={(e) => setFormData({...formData, name: e.target.value})}
-          required
-          className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-primary-secondary shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
-        />
-      </div>
-
-      {/* Email Field - Required */}
-      <div>
-        <label htmlFor="email" className="block text-sm font-semibold text-primary-secondary">
-          Email Address <span className="text-red-500">*</span>
-        </label>
-        <input
-          type="email"
-          id="email"
-          value={formData.email}
-          onChange={(e) => setFormData({...formData, email: e.target.value})}
-          required
-          className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-primary-secondary shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
-        />
-      </div>
-
-      {/* Business Name - Required */}
-      <div>
-        <label htmlFor="businessName" className="block text-sm font-semibold text-primary-secondary">
-          Business Name <span className="text-red-500">*</span>
-        </label>
-        <input
-          type="text"
-          id="businessName"
-          value={formData.businessName}
-          onChange={(e) => setFormData({...formData, businessName: e.target.value})}
-          required
-          className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-primary-secondary shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
-        />
-      </div>
-
-      {/* Service Interest - Required */}
-      <div>
-        <label className="block text-sm font-semibold text-primary-secondary">
-          Which service interests you? <span className="text-red-500">*</span>
-        </label>
-        <div className="mt-3 grid gap-y-2">
-          {[
-            "Cleaning Business Setup",
-            "Websites & Inquiry", 
-            "Client Journey & Systems"
-          ].map((option) => (
-            <label key={option} className="flex items-center rounded-lg border px-4 py-3 cursor-pointer">
-              <input
-                type="checkbox"
-                value={option}
-                checked={formData.serviceInterest.includes(option)}
-                onChange={(e) => {
-                  const selected = formData.serviceInterest.includes(option)
-                    ? formData.serviceInterest.filter(s => s !== option)
-                    : [...formData.serviceInterest, option];
-                  setFormData({...formData, serviceInterest: selected});
-                }}
-                className="sr-only"
-              />
-              <span className="ml-2">{option}</span>
-            </label>
-          ))}
-        </div>
-      </div>
-
-      {/* Message - Required, max 2000 characters */}
-      <div>
-        <label htmlFor="message" className="block text-sm font-semibold text-primary-secondary">
-          Tell us what you're working with <span className="text-red-500">*</span>
-        </label>
-        <textarea
-          id="message"
-          value={formData.message}
-          onChange={(e) => setFormData({...formData, message: e.target.value})}
-          rows={6}
-          required
-          maxLength={2000}
-          className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-primary-secondary shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
-        />
-        <div className="mt-1 text-xs text-gray-500">Up to 2,000 characters</div>
-      </div>
-
-      {/* Optional Fields */}
-      <div className="grid gap-y-4">
-        {/* Phone (Optional) */}
-        <div>
-          <label htmlFor="phone" className="block text-sm text-gray-700">Phone (Optional)</label>
-          <input
-            type="tel"
-            id="phone"
-            value={formData.phone || ""}
-            onChange={(e) => setFormData({...formData, phone: e.target.value})}
-            placeholder="(XXX) XXX-XXXX"
-            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-primary-secondary shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+    <Form {...form}>
+      <form onSubmit={onSubmit} noValidate className="border bg-background p-6 md:p-10" aria-describedby="form-note">
+        <div className="grid gap-6 md:grid-cols-2">
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input autoComplete="name" className="h-12 text-base" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input
+                    type="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    className="h-12 text-base"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="businessName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Business name</FormLabel>
+                <FormControl>
+                  <Input autoComplete="organization" className="h-12 text-base" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="website"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  Website <span className="font-normal text-muted-foreground">(optional)</span>
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    inputMode="url"
+                    autoComplete="url"
+                    placeholder="yourbusiness.com"
+                    className="h-12 text-base"
+                    {...field}
+                    value={field.value ?? ""}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
         </div>
 
-        {/* Website (Optional) */}
-        <div>
-          <label htmlFor="website" className="block text-sm text-gray-700">Current Website (Optional)</label>
-          <input
-            type="url"
-            id="website"
-            value={formData.website || ""}
-            onChange={(e) => setFormData({...formData, website: e.target.value})}
-            placeholder="https://example.com"
-            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-primary-secondary shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
-          />
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem className="mt-6">
+              <FormLabel>What prompted you to reach out?</FormLabel>
+              <FormControl>
+                <Textarea
+                  rows={5}
+                  className="min-h-[140px] text-base"
+                  placeholder="A few sentences is plenty—what feels disconnected right now?"
+                  {...field}
+                />
+              </FormControl>
+              <div className="flex items-start justify-between gap-4">
+                <FormMessage />
+                <span
+                  className={cn(
+                    "ml-auto shrink-0 text-xs tabular-nums text-muted-foreground",
+                    messageLength > 2000 && "text-destructive",
+                  )}
+                >
+                  {messageLength}/2000
+                </span>
+              </div>
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="serviceInterest"
+          render={({ field }) => {
+            const selected = (field.value ?? []) as string[];
+            return (
+              <FormItem className="mt-6">
+                <p id="service-interest-label" className="text-sm font-medium leading-none">
+                  Service interest{" "}
+                  <span className="font-normal text-muted-foreground">(optional, choose any)</span>
+                </p>
+                <div role="group" aria-labelledby="service-interest-label" className="flex flex-wrap gap-2 pt-1">
+                  {SERVICE_OPTIONS.map((opt) => {
+                    const active = selected.includes(opt);
+                    return (
+                      <button
+                        key={opt}
+                        type="button"
+                        aria-pressed={active}
+                        onClick={() =>
+                          field.onChange(
+                            active ? selected.filter((s) => s !== opt) : [...selected, opt],
+                          )
+                        }
+                        className={cn(
+                          "group flex min-h-11 items-center gap-2 border px-4 py-2 text-left text-sm transition-colors",
+                          active
+                            ? "border-foreground bg-foreground text-background"
+                            : "border-input hover:border-foreground",
+                        )}
+                      >
+                        <span className="font-medium tracking-wide">{opt}</span>
+                        <span
+                          className={cn(
+                            "text-xs",
+                            active ? "text-background/70" : "text-muted-foreground",
+                          )}
+                        >
+                          {SERVICE_HINTS[opt]}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+                <FormDescription>Not sure? Leave this blank—we'll figure it out together.</FormDescription>
+              </FormItem>
+            );
+          }}
+        />
+
+        {/* Honeypot: hidden from people and assistive tech; bots tend to fill it. */}
+        <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+          <label>
+            Company
+            <input ref={honeypot} type="text" name="company" tabIndex={-1} autoComplete="off" />
+          </label>
         </div>
 
-        {/* Language Preference (Optional) */}
-        <div>
-          <label htmlFor="languagePreference" className="block text-sm text-gray-700">Preferred Discussion Language (Optional)</label>
-          <select
-            id="languagePreference"
-            value={formData.languagePreference || "English"}
-            onChange={(e) => setFormData({...formData, languagePreference: e.target.value})}
-            className="w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-primary-secondary shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary"
+        {phase.kind === "error" && (
+          <div
+            role="alert"
+            className="mt-6 flex gap-3 border border-destructive/40 bg-destructive/5 p-4 text-sm text-destructive"
           >
-            <option value="English">English</option>
-            {["Cleaning Business Setup", "Websites & Inquiry", "Client Journey & Systems"].map((opt) => (
-              <option key={opt} value={opt}>{opt}</option>
-            ))}
-          </select>
+            <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
+            <div>
+              <p>{phase.message}</p>
+              <p className="mt-1">
+                You can also reach us at{" "}
+                <a href={SITE.emailHref} className="underline">
+                  {SITE.email}
+                </a>{" "}
+                or{" "}
+                <a href={SITE.phoneHref} className="underline">
+                  {SITE.phone}
+                </a>
+                .
+              </p>
+            </div>
+          </div>
+        )}
+
+        <div className="mt-8 flex flex-col gap-4 border-t pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <p id="form-note" className="max-w-sm text-xs leading-relaxed text-muted-foreground">
+            We use these details only to respond to your inquiry. See our{" "}
+            <a href="/privacy" className="underline">
+              privacy information
+            </a>
+            .
+          </p>
+          <Button type="submit" size="xl" disabled={isSubmitting} className="w-full sm:w-auto">
+            {isSubmitting ? (
+              <>
+                <Loader2 className="animate-spin" aria-hidden /> Sending…
+              </>
+            ) : (
+              "Send Inquiry"
+            )}
+          </Button>
         </div>
-      </div>
-
-      {/* Submit Button */}
-      <button
-        type="submit"
-        className="w-full rounded-lg bg-primary px-4 py-3 text-base font-semibold leading-6 text-primary-shade ring-1 ring-inset shadow-sm hover:bg-primary-dark transition-all duration-200"
-      >
-        Submit Inquiry
-      </button>
-
-      {/* Privacy Notice */}
-      <div className="rounded-lg bg-gray-50 p-4">
-        <p className="text-xs text-gray-600 dark:text-gray-400">
-          By submitting this form, you agree to our terms and privacy policy. We do not collect 
-          passwords, IDs, medical/tax/immigration files, or access codes.
-        </p>
-      </div>
-
-      {/* Marketing Subscription - Separate box (Spec 5.7) */}
-      <label className="flex items-start rounded-lg bg-gray-50 p-4">
-        <input
-          type="checkbox"
-          checked={formData.marketingSubscribed}
-          onChange={(e) => setFormData({...formData, marketingSubscribed: e.target.checked})}
-          className="mt-1"
-        />
-        <span className="ml-3 block text-sm text-gray-700 dark:text-gray-300">
-          Subscribe to our newsletter about business setup systems
-        </span>
-        <p className="block mt-1 text-xs text-gray-600 dark:text-gray-400">
-          No forced marketing consent. You can opt out anytime.
-        </p>
-      </label>
-    </form>
+      </form>
+    </Form>
   );
 }
-
-export default InquiryForm;
