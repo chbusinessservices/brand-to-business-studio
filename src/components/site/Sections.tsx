@@ -191,7 +191,7 @@ export function Services() {
             </span>
           </p>
           <Button asChild size="xl" variant="inverse" className="w-full shrink-0 md:w-auto">
-            <a href="#contact">
+            <a href="/contact">
               Find your starting point <ArrowRight aria-hidden />
             </a>
           </Button>

@@ -33,7 +33,7 @@ export function Header() {
             {NAV_LINKS.map((l) => (
               <li key={l.href}>
                 <a
-                  href={`/${l.href}`}
+                  href={l.href}
                   className="link-underline py-1 text-[0.92rem] text-foreground/80 transition-colors hover:text-foreground"
                 >
                   {l.label}
@@ -45,7 +45,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Button asChild className="hidden sm:inline-flex h-10 px-5">
-            <a href="/#contact">Request a Clarity Call</a>
+            <a href="/contact">Request a Clarity Call</a>
           </Button>
 
           <Sheet>
@@ -75,7 +75,7 @@ export function Header() {
                     <li key={l.href} className="border-b">
                       <SheetClose asChild>
                         <a
-                          href={`/${l.href}`}
+                          href={l.href}
                           className="flex items-baseline gap-4 py-4 text-xl font-medium"
                         >
                           <span className="eyebrow text-muted-foreground">0{i + 1}</span>
@@ -87,7 +87,7 @@ export function Header() {
                 </ul>
                 <SheetClose asChild>
                   <Button asChild size="xl" className="mt-8 w-full">
-                    <a href="/#contact">Request a Free 15-Minute Clarity Call</a>
+                    <a href="/contact">Request a Free 15-Minute Clarity Call</a>
                   </Button>
                 </SheetClose>
               </nav>

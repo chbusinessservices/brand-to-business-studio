@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Logo } from "./Logo";
-import { NAV_LINKS, PROFESSIONAL_DISCLAIMER, SITE } from "@/lib/site";
+import { FOOTER_LEGAL_LINKS, NAV_LINKS, PROFESSIONAL_DISCLAIMER, SITE } from "@/lib/site";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -20,7 +20,7 @@ export function Footer() {
             <ul className="mt-5 grid grid-cols-2 gap-y-3 md:grid-cols-1">
               {NAV_LINKS.map((l) => (
                 <li key={l.href}>
-                  <a href={`/${l.href}`} className="link-underline text-[0.95rem]">
+                  <a href={l.href} className="link-underline text-[0.95rem]">
                     {l.label}
                   </a>
                 </li>
@@ -60,9 +60,11 @@ export function Footer() {
         <div className="flex flex-col gap-6 pt-8 text-[0.8rem] leading-relaxed text-ink-muted md:flex-row md:items-start md:justify-between">
           <p className="max-w-2xl">{PROFESSIONAL_DISCLAIMER}</p>
           <div className="flex shrink-0 flex-wrap items-center gap-x-6 gap-y-2">
-            <Link to="/privacy" className="link-underline">
-              Privacy information
-            </Link>
+            {FOOTER_LEGAL_LINKS.map((l) => (
+              <a key={l.href} href={l.href} className="link-underline">
+                {l.label}
+              </a>
+            ))}
             <Link to="/auth" className="link-underline">
               Owner sign-in
             </Link>

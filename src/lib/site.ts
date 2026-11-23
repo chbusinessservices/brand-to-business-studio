@@ -20,12 +20,18 @@ export const SITE = {
 } as const;
 
 export const NAV_LINKS = [
-  { href: "#services", label: "Services" },
-  { href: "#method", label: "Method" },
-  { href: "#how-it-works", label: "How It Works" },
-  { href: "#about", label: "About" },
-  { href: "#faq", label: "FAQ" },
-  { href: "#contact", label: "Contact" },
+  { href: "/services", label: "Services" },
+  { href: "/how-we-work", label: "How We Work" },
+  { href: "/examples", label: "Examples" },
+  { href: "/business-backup-check", label: "Backup Check" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+] as const;
+
+export const FOOTER_LEGAL_LINKS = [
+  { href: "/privacy", label: "Privacy information" },
+  { href: "/terms", label: "Website terms" },
+  { href: "/accessibility", label: "Accessibility" },
 ] as const;
 
 export const SERVICE_OPTIONS = ["CODE", "SHIELD", "SIGNAL", "SYSTEM", "General Inquiry"] as const;
@@ -142,3 +148,94 @@ export const ABOUT = {
     "Engagements begin with listening and a clear recommendation, not a predetermined package. Practical outcomes come first; framework names come second.",
   founderBio: [] as string[],
 };
+
+/**
+ * Scoped offers. Each is CH implementation work (CH contracts with the client).
+ * No prices are published: scope and pricing are agreed in writing first.
+ */
+export const OFFERS = [
+  {
+    slug: "cleaning-business-setup",
+    name: "Cleaning Business Setup",
+    short: "A focused setup for owner-led residential cleaning businesses that already have customers.",
+    whoFor:
+      "Owner-led residential cleaning businesses with existing customers. Our initial focus is Hudson County, New Jersey; other service businesses are welcome to ask whether it fits.",
+    problem:
+      "Customers find you by word of mouth, but quotes, bookings, first visits and follow-ups are handled differently each time and mostly depend on the owner.",
+    includes: [
+      "A clear description of what you offer, to whom, and what happens next",
+      "A simple website or page that explains the offer and collects requests",
+      "A consistent path from first request to quote, first visit and follow-up",
+      "Written responsibilities: what you own, what CH owns, what needs another professional",
+    ],
+    excludes: [
+      "Legal, tax, insurance or licensing advice",
+      "Hiring, payroll or staff management",
+      "Guaranteed bookings, revenue or rankings",
+    ],
+    pillars: ["CODE", "SIGNAL", "SYSTEM"],
+  },
+  {
+    slug: "websites-inquiry",
+    name: "Websites & Inquiry",
+    short: "A website that explains your offer and an inquiry path that reliably reaches you.",
+    whoFor: "Service businesses whose site leaves visitors unsure what you do or how to take the next step.",
+    problem:
+      "Visitors read the page and leave, or messages arrive incomplete, in different places, or not at all.",
+    includes: [
+      "Messaging for the pages that matter: what you do, who it is for, what happens next",
+      "A website build or rebuild scoped to agreed pages",
+      "A tested inquiry form that stores each request and shows an honest confirmation",
+      "A short handoff so you know where requests land and who answers them",
+    ],
+    excludes: [
+      "Ongoing advertising or paid campaign management",
+      "Guaranteed search rankings or traffic",
+      "Work outside the agreed pages",
+    ],
+    pillars: ["CODE", "SIGNAL"],
+  },
+  {
+    slug: "client-journey-systems",
+    name: "Client Journey & Systems",
+    short: "A bounded improvement to how new clients are onboarded and how work is handed off.",
+    whoFor: "Founders whose onboarding and delivery change from client to client.",
+    problem:
+      "Each new client gets a slightly different start, and who owns what lives mostly in the owner's head.",
+    includes: [
+      "A map of the current client journey and where it breaks",
+      "A documented onboarding sequence and handoff checklist",
+      "Assigned owners for each recurring step",
+      "Simple written procedures your team can follow",
+    ],
+    excludes: [
+      "Software licences or subscriptions (you choose and own your tools)",
+      "Legal, HR or accounting decisions",
+      "Open-ended ongoing operations management",
+    ],
+    pillars: ["SHIELD", "SYSTEM"],
+  },
+] as const;
+export type Offer = (typeof OFFERS)[number];
+
+/** Evidence standard used on /examples. Nothing below may be client proof until approved. */
+export const EVIDENCE_LABELS = [
+  { label: "Illustrative sample", body: "Created by CH to show the format of a deliverable. Not a real client and not a result." },
+  { label: "CH internal work", body: "Work CH did on its own business, such as this website." },
+  { label: "Client evidence", body: "Published only with the client's written permission and the facts checked. None is published yet." },
+] as const;
+
+/** Ungated self-reflection. No scores, no diagnosis, nothing is stored or sent. */
+export const BACKUP_CHECK = [
+  { area: "Offer", q: "Could someone else explain what you sell, to whom, in two sentences?" },
+  { area: "First contact", q: "If a new customer messages you today, do you know exactly where it lands and who answers?" },
+  { area: "Quoting", q: "Do you price and quote the same way each time, written down somewhere other than your head?" },
+  { area: "First visit", q: "Does every new customer get the same welcome and the same information before the first visit?" },
+  { area: "Responsibilities", q: "Is it written down who does what, including what you would hand off if you were away for a week?" },
+  { area: "Follow-up", q: "After a job, is there a set next step—a check-in, a review request, a rebooking?" },
+  { area: "Records", q: "Could you find a customer's history, agreements and notes in under two minutes?" },
+  { area: "Professional review", q: "Do you know which questions in your business need a lawyer, accountant or insurer rather than a guess?" },
+] as const;
+
+export const LEGAL_DRAFT_NOTE =
+  "Working draft prepared from how the website is currently built. It must be reviewed and approved by the owner—and ideally a qualified professional—before it is relied on. It does not claim compliance with any specific law.";
