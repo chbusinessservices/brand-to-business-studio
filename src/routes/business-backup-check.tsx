@@ -4,8 +4,8 @@ import { NextStep, PageIntro, PageShell, pageHead } from "@/components/site/Page
 import { BACKUP_CHECK } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/business-backup-check")({
-  head: () => pageHead("/business-backup-check", "Business Backup Check", "Eight plain questions to reflect on how much of your business depends on you remembering everything. No sign-up, no score, nothing stored."),
+export const Route = createFileRoute("/business-backup-check/")({
+  head: () => pageHead("/business-backup-check/", "Business Backup Check", "Eight plain questions to reflect on how much of your business depends on you remembering everything. No sign-up, no score, nothing stored."),
   component: Check,
 });
 

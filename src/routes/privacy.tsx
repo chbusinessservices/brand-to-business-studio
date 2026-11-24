@@ -7,7 +7,7 @@ const TITLE = "Privacy information — CH Business Services";
 const DESCRIPTION =
   "How CH Business Services handles the information you share through the website inquiry form, booking link, and site analytics.";
 
-export const Route = createFileRoute("/privacy")({
+export const Route = createFileRoute("/privacy/")({
   head: () => ({
     meta: [
       { title: TITLE },

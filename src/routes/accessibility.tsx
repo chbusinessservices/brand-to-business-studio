@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { DraftNote, PageShell, Prose, ProseSection, pageHead } from "@/components/site/PageShell";
 import { SITE } from "@/lib/site";
 
-export const Route = createFileRoute("/accessibility")({
-  head: () => pageHead("/accessibility", "Accessibility", "The accessibility work done on the CH Business Services website, known limitations, and how to ask for help.", "article"),
+export const Route = createFileRoute("/accessibility/")({
+  head: () => pageHead("/accessibility/", "Accessibility", "The accessibility work done on the CH Business Services website, known limitations, and how to ask for help.", "article"),
   component: () => (
     <PageShell>
       <Prose>

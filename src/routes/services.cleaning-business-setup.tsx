@@ -8,7 +8,7 @@ const offer = OFFERS.find((item) => item.slug === "cleaning-business-setup")!;
 /** 
  * /services/cleaning-business-setup - Full service detail per Section 5.2 spec
  */
-export const Route = createFileRoute("/services/cleaning-business-setup")({
+export const Route = createFileRoute("/services/cleaning-business-setup/")({
   head: () => pageHead(
     "/services/cleaning-business-setup",
     offer.name,

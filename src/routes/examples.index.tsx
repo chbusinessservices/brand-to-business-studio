@@ -4,7 +4,7 @@ import { NextStep, PageIntro, PageShell, pageHead } from "@/components/site/Page
 import { EVIDENCE_LABELS } from "@/lib/site";
 
 export const Route = createFileRoute("/examples/")({
-  head: () => pageHead("/examples", "Examples & Evidence", "How CH labels its examples: illustrative samples, CH internal work, and client evidence published only with permission."),
+  head: () => pageHead("/examples/", "Examples & Evidence", "How CH labels its examples: illustrative samples, CH internal work, and client evidence published only with permission."),
   component: () => (
     <PageShell>
       <PageIntro eyebrow="Examples & evidence" title="Every example says what it is." lead="We separate samples from real work, so you never mistake an illustration for a client result." />

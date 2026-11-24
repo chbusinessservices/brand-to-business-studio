@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { NextStep, PageIntro, PageShell, Prose, ProseSection, pageHead } from "@/components/site/PageShell";
 
-export const Route = createFileRoute("/examples/sample-client-handoff")({
+export const Route = createFileRoute("/examples/sample-client-handoff/")({
   head: () => pageHead("/examples/sample-client-handoff", "Sample Client Handoff (Illustrative)", "An illustrative handoff document for a fictional cleaning business, showing the format CH uses. Not a real client or result.", "article"),
   component: Sample,
 });
