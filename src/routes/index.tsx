@@ -2,7 +2,15 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { AssistantWidget } from "@/components/site/AssistantWidget";
-import { SITE } from "@/lib/site";
+import {
+  FAQS,
+  FOOTER_LEGAL_LINKS,
+  OFFERS,
+  PILLARS,
+  PROBLEMS,
+  STEPS,
+  SITE,
+} from "@/lib/site";
 import {
   Hero,
   Statement,
@@ -59,25 +67,25 @@ const VISUAL = {
  * HOME-04 RECOGNIZE THE GAP
  * Three cards addressing common pain points
  */
-const PROBLEMS = SITE.PROBLEMS;
+const HOME_PROBLEMS = PROBLEMS;
 
 /** 
  * HOME-05 SERVICE CHOICES
  * Primary setup card + narrower options
  */
-export const SERVICES_CONTENT = SITE.OFFERS;
+export const SERVICES_CONTENT = OFFERS;
 
 /** 
  * HOME-06 PILLARS (CODE/SHIELD/SIGNAL/SYSTEM)
  * Trust OS explanation
  */
-const PILLARS = SITE.PILLARS;
+const HOME_PILLARS = PILLARS;
 
 /** 
  * HOME-07 ENGAGEMENT PROCESS
  * Full inquiry-to-handoff flow
  */
-const STEPS = SITE.STEPS;
+const HOME_STEPS = STEPS;
 
 /** 
  * HOME-08 BUSINESS BACKUP CHECK
@@ -111,7 +119,7 @@ const AUDIENCE_CLAIM = {
  * HOME-11 FAQS
  * Resolve common questions
  */
-export const FAQS_CONTENT = SITE.FAQS;
+export const FAQS_CONTENT = FAQS;
 
 /** 
  * HOME-12 CLOSING CTA
@@ -127,7 +135,7 @@ const CLOSING = {
  * HOME-13 FOOTER
  * Navigation, verified contact, policies
  */
-export const FOOTER_LINKS = SITE.FOOTER_LEGAL_LINKS;
+export const FOOTER_LINKS = FOOTER_LEGAL_LINKS;
 
 // Type-safe inference for route component
 declare module "@tanstack/react-router" {
@@ -139,8 +147,8 @@ declare module "@tanstack/react-router" {
 }
 
 export const Route = createFileRoute("/")({
-  head,
-  component: HomePage,
+  head: homeRouteHead,
+  component: IndexComponent,
 });
 
 function homeRouteHead() {
@@ -216,7 +224,7 @@ function IndexComponent() {
         <section className="my-12">
           <h3 className="text-2xl font-semibold mb-6">How engagement works</h3>
           <ol className="list-none space-y-4 text-lg">
-            {STEPS.map((step, index) => (
+            {HOME_STEPS.map((step, index) => (
               <li key={index} className="flex gap-4">
                 <span className="text-sm text-muted-foreground flex-shrink-0">{index + 1}</span>
                 <div>

@@ -1,27 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { SITE, EVIDENCE_LABELS } from "@/lib/site";
-import {
-  IndexHeader,
-  ServicesList,
-  ServiceDetailSummary,
-  ProblemsList,
-} from "@/components/site/Sections";
+import { OFFERS, PILLARS, SITE } from "@/lib/site";
+import { pageHead } from "@/components/site/PageShell";
 
 /** 
  * /services - Service index following Section 5.1 spec
  */
 export const Route = createFileRoute("/services")({
-  head: () => ({
-    title: `${SITE.name} — Services`,
-    description: `Discover how ${SITE.name} helps you build the business behind your brand`,
-    children: {
-      "og:title": `${SITE.name} — We build the business behind the brand.`,
-      "og:description": `Brand architecture and business systems for service-business founders.`,
-      "og:type": "website",
-    },
-  }),
+  head: () => pageHead(
+    "/services",
+    "Services",
+    "Discover how CH Business Services helps you build the business behind your brand",
+  ),
   component: ServicesIndexPage,
 });
 
@@ -29,8 +20,8 @@ export const Route = createFileRoute("/services")({
  * /services - Full index page implementation
  */
 function ServicesIndexPage() {
-  const services = SITE.OFFERS;
-  const pillars = SITE.PILLARS;
+  const services = OFFERS;
+  const pillars = PILLARS;
   
   return (
     <>
@@ -201,7 +192,13 @@ function ServicesIndexPage() {
           <h3 className="font-semibold mb-4">What we do (and don't) do</h3>
           
           {/* Exclusions summary from all services */}
-          {() => null}
+          <ul className="list-disc space-y-2 pl-5 text-muted-foreground">
+            {OFFERS.flatMap((service) =>
+              service.excludes.map((exclusion) => (
+                <li key={`${service.slug}-${exclusion}`}>{exclusion}</li>
+              )),
+            )}
+          </ul>
         </section>
 
         {/* FAQ section embedded here */}

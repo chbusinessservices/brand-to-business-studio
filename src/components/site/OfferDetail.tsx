@@ -1,14 +1,14 @@
-import { SITE, EVIDENCE_LABELS } from "@/lib/site";
 import { Link } from "@tanstack/react-router";
+import type { Offer } from "@/lib/site";
 
 /** 
  * O(1) render with all Section 5.2 requirements implemented
  * Reference: Section 5 Service Page Specifications
  */
 
-function OfferDetail() {
-  const [service, setService] = useState<Offer | null>(null);
-  
+export function OfferDetail({ offer }: { offer: Offer }) {
+  const service = offer;
+
   return (
     <div className="max-w-4xl mx-auto px-6 py-12">
       {/* H1 - Service name with plain outcome scoped as work */}
@@ -88,7 +88,13 @@ function OfferDetail() {
       </section>
 
       {/* 9. Provider responsibilities */}
-      {() => null}
+      <section className="rounded-lg border p-6 mb-8">
+        <h2 className="text-xl font-semibold mb-3">Provider Responsibilities</h2>
+        <p className="text-muted-foreground">
+          Providers contract and deliver only when their role is identified in the written scope.
+          CH clearly documents provider compensation and keeps the customer relationship boundaries explicit.
+        </p>
+      </section>
       
       {/* 10. Milestones and dependencies */}
       <section className="rounded-lg border p-6 mb-8">
@@ -162,17 +168,5 @@ function OfferDetail() {
     </div>
   );
 }
-
-// Helper types
-type Offer = {
-  slug: string;
-  name: string;
-  short: string;
-  whoFor: string;
-  problem: string;
-  includes: string[];
-  excludes: string[];
-  pillars: string[];
-};
 
 export default OfferDetail;
