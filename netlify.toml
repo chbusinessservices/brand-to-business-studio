@@ -1,13 +1,35 @@
-# On Netlify, the Nitro build writes static client assets to dist/ and the
-# server function to .netlify/functions-internal.
+# Netlify Configuration for BrandToBusinessStudio
+
 [build]
   command = "bun run build"
   publish = "dist"
 
+[[redirects]]
+  from = "/auth/sign-in"
+  to = "/auth/login"
+  status = 307
+
+[[redirects]]
+  from = "/auth/sign-in/*"
+  to = "/auth/login"
+  status = 307
+
+[[redirects]]
+  from = "/oauth/complete/google"
+  to = "/auth/callback"
+  status = 200
+
+[[redirects]]
+  from = "/api/public/agency-agent-chat"
+  to = "/.netlify/functions/oauth-handoff"
+  status = 200
+
 [build.environment]
-  # These Supabase values are public by design: the project URL/ID and the
-  # publishable (anon) key are embedded in the browser and SSR bundles, and
-  # access is enforced by Row Level Security. The service-role key is NOT
-  # listed here and must never appear in build output.
-  SECRETS_SCAN_OMIT_KEYS = "VITE_SUPABASE_PROJECT_ID,VITE_SUPABASE_PUBLISHABLE_KEY,VITE_SUPABASE_URL,SUPABASE_PROJECT_ID,SUPABASE_PUBLISHABLE_KEY,SUPABASE_URL"
+  NODE_VERSION = "18.x"
   NITRO_PRESET = "netlify"
+
+# Supabase secrets (omit from build output)
+SECRETS_SCAN_OMIT_KEYS = "SUPABASE_URL,SUPABASE_ANON_KEY,SUPABASE_SERVICE_ROLE,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,AUTH_SERVICE_ROLE"
+
+[functions]
+  directory = "src/functions/src"
