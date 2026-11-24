@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "updatedMs": 1795491083711,
+  "updatedMs": 1795491181162,
   "mod": "adr",
   "guard": true,
   "calls": 0,
   "blocked": 0,
-  "startedMs": 1795487736696,
+  "startedMs": 0,
   "host": "codex",
-  "sessionId": "01a20b56-5d89-7680-81c1-fe945836df31"
+  "sessionId": "01a20b3b-1973-7e11-816c-d143fb7bef96"
 }
