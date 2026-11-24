@@ -7,7 +7,7 @@ import { pageHead } from "@/components/site/PageShell";
 /** 
  * /services - Service index following Section 5.1 spec
  */
-export const Route = createFileRoute("/services")({
+export const Route = createFileRoute("/services/")({
   head: () => pageHead(
     "/services",
     "Services",
