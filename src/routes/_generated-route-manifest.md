@@ -11,18 +11,18 @@
 
 | Route | Priority | Status | Owner | Phase | Dependencies |
 |-------|----------|--------|-------|-------|--------------|
-| `/` Home | P1 | TODO | Technical | P1 | N/A |
-| `/services` Index | P1 | TODO | Content | P1 | site.ts OFFERS |
-| `/services/cleaning-business-setup` | P1 | TODO | Content | P1 | site.ts OFFERS[0] |
-| `/services/websites-inquiry` | P1 | TODO | Content | P1 | site.ts OFFERS[1] |
-| `/services/client-journey-systems` | P1 | TODO | Content | P1 | site.ts OFFERS[2] |
-| `/how-we-work` | P1 | TODO | Content | P1 | SITE.PILLARS |
-| `/examples` Index | P1 | TODO | Content | P1 | EVIDENCE_LABELS |
-| `/about` | P1 | TODO | Content | P1 | SITE.founder/SITE.established |
-| `/business-backup-check` | P1 | TODO | Content | P1 | BACKUP_CHECK |
-| `/contact` | P1 | TODO | Tech | P1 | INQUIRY_SCHEMA |
-| `/privacy` | P1 | TODO | Legal | P1 | Privacy Notice Draft |
-| `/terms` | P1 | TODO | Legal | P1 | Website Terms Draft |
+| `/` Home | P1 | DONE | Technical | P1 | N/A | | Technical | P1 | N/A |
+| `/services` Index | P1 | DONE | Content | P1 | site.ts OFFERS | | Content | P1 | site.ts OFFERS |
+| `/services/cleaning-business-setup` | P1 | DONE | Content | P1 | site.ts OFFERS[0] | | Content | P1 | site.ts OFFERS[0] |
+| `/services/websites-inquiry` | P1 | DONE | Content | P1 | site.ts OFFERS[1] | | Content | P1 | site.ts OFFERS[1] |
+| `/services/client-journey-systems` | P1 | DONE | Content | P1 | site.ts OFFERS[2] | | Content | P1 | site.ts OFFERS[2] |
+| `/how-we-work` | P1 | DONE | Content | P1 | SITE.PILLARS | | Content | P1 | SITE.PILLARS |
+| `/examples` Index | P1 | DONE | Content | P1 | EVIDENCE_LABELS | | Content | P1 | EVIDENCE_LABELS |
+| `/about` | P1 | DONE | Content | P1 | SITE.founder/SITE.established | | Content | P1 | SITE.founder/SITE.established |
+| `/business-backup-check` | P1 | DONE | Content | P1 | BACKUP_CHECK | | Content | P1 | BACKUP_CHECK |
+| `/contact` | P1 | DONE | Tech | P1 | INQUIRY_SCHEMA | | Tech | P1 | INQUIRY_SCHEMA |
+| `/privacy` | P1 | DONE | Legal | P1 | Privacy Notice Draft | | Legal | P1 | Privacy Notice Draft |
+| `/terms` | P1 | DONE | Legal | P1 | Website Terms Draft | | Legal | P1 | Website Terms Draft |
 | `/accessibility` | P1 | TODO | Access | P1 | WCAG 2.2 AA Target |
 
 ### P2/P3 ROUTES (Post-Authentication)

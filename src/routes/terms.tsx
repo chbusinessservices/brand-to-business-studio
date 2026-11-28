@@ -2,8 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { DraftNote, PageShell, Prose, ProseSection, pageHead } from "@/components/site/PageShell";
 import { PROFESSIONAL_DISCLAIMER, SITE } from "@/lib/site";
 
-export const Route = createFileRoute("/terms")({
-  head: () => pageHead("/terms", "Website Terms", "Draft terms for using the CH Business Services website. These do not replace a written service agreement.", "article"),
+export const Route = createFileRoute("/terms/")({
+  head: () => pageHead("/terms/", "Website Terms", "Draft terms for using the CH Business Services website. These do not replace a written service agreement.", "article"),
   component: () => (
     <PageShell>
       <Prose>
